@@ -1,6 +1,7 @@
 class Statement {
   constructor() {
-    this.statementLines = ['date || credit || debit || balance'];
+    this.statementLines = [];
+    this.startLine = 'date || credit || debit || balance';
   }
 
   addLine(newLine) {
@@ -8,7 +9,12 @@ class Statement {
   }
 
   printStatement() {
-    const output = this.statementLines.join('\n');
+    // Add start line at the end, then reverse to get reverse chronological order of transactions
+    this.statementLines.push(this.startLine);
+    const reversedLines = this.statementLines.reverse();
+
+    // Create one string to return
+    const output = reversedLines.join('\n');
     return output;
   }
 }
