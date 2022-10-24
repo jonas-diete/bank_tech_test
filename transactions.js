@@ -1,4 +1,4 @@
-class MoveMoney {
+class Transactions {
   constructor(account) {
     this.account = account;
   }
@@ -16,4 +16,4 @@ class MoveMoney {
   }
 };
 
-module.exports = MoveMoney;
+module.exports = Transactions;
