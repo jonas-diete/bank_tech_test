@@ -1,20 +1,22 @@
 class Statement {
   constructor() {
     this.statementLines = [];
-    this.startLine = 'date || credit || debit || balance';
   }
 
   addLine(newLine) {
-    this.statementLines.push(newLine);
+    this.statementLines.unshift(newLine);
   }
 
   printStatement() {
-    // Add start line at the end, then reverse to get reverse chronological order of transactions
-    this.statementLines.push(this.startLine);
-    const reversedLines = this.statementLines.reverse();
+    // Add the headings line
+    this.statementLines.unshift('date || credit || debit || balance');
 
     // Create a single string to return
-    const statementString = reversedLines.join('\n');
+    const statementString = this.statementLines.join('\n');
+
+    // Delete the headings line again, ready to add more transactions
+    this.statementLines.splice(0, 1);
+
     return statementString;
   }
 }
