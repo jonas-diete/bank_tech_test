@@ -2,7 +2,7 @@ const Transactions = require('./transactions');
 const Account = require('./account');
 const Statement = require('./statement');
 
-describe('Transactions', () => {
+describe('Integration', () => {
   it('deposits money', () => {
     const account = new Account;
     const statement = new Statement;
@@ -17,6 +17,15 @@ describe('Transactions', () => {
     const transactions = new Transactions(account, statement);
     transactions.withdraw(300);
     expect(account.getBalance()).toBe(-300);
+  });
+
+  it('withdraw and deposit can use floats', () => {
+    const account = new Account;
+    const statement = new Statement;
+    const transactions = new Transactions(account, statement);
+    transactions.deposit(532.90);
+    transactions.withdraw(310.50);
+    expect(account.getBalance()).toBe(222.40);
   });
 
   it('adds correct statement line after depositing', () => {
