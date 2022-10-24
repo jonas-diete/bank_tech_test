@@ -13,9 +13,9 @@ class Statement {
     this.statementLines.push(this.startLine);
     const reversedLines = this.statementLines.reverse();
 
-    // Create one string to return
-    const output = reversedLines.join('\n');
-    return output;
+    // Create a single string to return
+    const statementString = reversedLines.join('\n');
+    return statementString;
   }
 }
 
