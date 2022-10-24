@@ -10,6 +10,6 @@ class Account {
   updateBalance(amount) {
     this.balance += amount;
   }
-};
+}
 
 module.exports = Account;
