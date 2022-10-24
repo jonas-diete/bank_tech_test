@@ -19,15 +19,6 @@ describe('Integration', () => {
     expect(account.getBalance()).toBe(-300);
   });
 
-  it('withdraw and deposit can use floats', () => {
-    const account = new Account;
-    const statement = new Statement;
-    const transactions = new Transactions(account, statement);
-    transactions.deposit(532.90);
-    transactions.withdraw(310.50);
-    expect(account.getBalance()).toBe(222.40);
-  });
-
   it('adds correct statement line after depositing', () => {
     const account = new Account;
     const statement = new Statement;

@@ -2,6 +2,9 @@ const Transactions = require('./transactions');
 const Account = require('./account');
 const Statement = require('./statement');
 
+
+// An example of how the program works
+// Enter 'node run.js' to see the output
 const account = new Account;
 const statement = new Statement;
 const transactions = new Transactions(account, statement);

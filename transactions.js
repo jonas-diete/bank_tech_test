@@ -10,8 +10,9 @@ class Transactions {
   };
 
   checkArgument(argument) {
-    if (typeof argument != 'number' || argument <= 0) {
-      throw 'Input needs to be a positive number';
+    // checking for input to be positive number, above zero and not a float
+    if (typeof argument != 'number' || argument <= 0 || !(argument % 1 == 0)) {
+      throw 'Input needs to be a positive integer';
     }
   };
 

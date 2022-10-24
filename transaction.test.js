@@ -41,31 +41,38 @@ describe('Transaction', () => {
     expect(fakeAccount.getBalance()).toBe(500);
   });
 
+  it('error is thrown when a float is passed in to deposit', () => {
+    const fakeAccount = {};
+    const fakeStatement = {};
+    const transactions = new Transactions(fakeAccount, fakeStatement);
+    expect(() => {transactions.deposit(150.53)}).toThrow('Input needs to be a positive integer');
+  });
+
   it('error is thrown when something other than a number is passed in to deposit', () => {
     const fakeAccount = {};
     const fakeStatement = {};
     const transactions = new Transactions(fakeAccount, fakeStatement);
-    expect(() => {transactions.deposit('hello')}).toThrow('Input needs to be a positive number');
+    expect(() => {transactions.deposit('hello')}).toThrow('Input needs to be a positive integer');
   });
 
   it('error is thrown when deposit input is empty', () => {
     const fakeAccount = {};
     const fakeStatement = {};
     const transactions = new Transactions(fakeAccount, fakeStatement);
-    expect(() => {transactions.deposit()}).toThrow('Input needs to be a positive number');
+    expect(() => {transactions.deposit()}).toThrow('Input needs to be a positive integer');
   });
 
   it('error is thrown when deposit input is negative', () => {
     const fakeAccount = {};
     const fakeStatement = {};
     const transactions = new Transactions(fakeAccount, fakeStatement);
-    expect(() => {transactions.deposit(-300)}).toThrow('Input needs to be a positive number');
+    expect(() => {transactions.deposit(-300)}).toThrow('Input needs to be a positive integer');
   });
 
   it('error is thrown when deposit input is 0', () => {
     const fakeAccount = {};
     const fakeStatement = {};
     const transactions = new Transactions(fakeAccount, fakeStatement);
-    expect(() => {transactions.deposit(0)}).toThrow('Input needs to be a positive number');
+    expect(() => {transactions.deposit(0)}).toThrow('Input needs to be a positive integer');
   });
 });
