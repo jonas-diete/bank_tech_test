@@ -1,6 +1,6 @@
-const Transactions = require('../transactions');
-const Account = require('../account');
-const Statement = require('../statement');
+const Transactions = require('./transactions');
+const Account = require('./account');
+const Statement = require('./statement');
 
 describe('Transactions', () => {
   it('deposits money', () => {

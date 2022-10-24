@@ -4,27 +4,18 @@ class Transactions {
     this.statement = statement;
   }
 
-  deposit(amount, dateString = '') {
-    this.account.updateBalance(amount);
-
-    // getting date and formating it to DD/MM/YYYY
-    if (dateString === '') {
-      const date = new Date;
-      dateString = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`
-    }
-    
-    this.statement.addLine(`${dateString} || ${amount}.00 || || ${this.account.getBalance()}.00`)
+  getDate() {
+    const date = new Date;
+    return `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
   };
 
-  withdraw(amount, dateString = '') {
+  deposit(amount, dateString = this.getDate()) {
+    this.account.updateBalance(amount);
+    this.statement.addLine(`${dateString} || ${amount}.00 || || ${this.account.getBalance()}.00`);
+  };
+
+  withdraw(amount, dateString = this.getDate()) {
     this.account.updateBalance(- amount);
-
-    // getting date and formating it to DD/MM/YYYY
-    if (dateString === '') {
-      const date = new Date;
-      dateString = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`
-    }
-
     this.statement.addLine(`${dateString} || || ${amount}.00 || ${this.account.getBalance()}.00`)
   }
 };
