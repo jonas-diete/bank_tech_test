@@ -3,6 +3,10 @@ class Statement {
     this.statementLines = ['date || credit || debit || balance'];
   }
 
+  addLine(newLine) {
+    this.statementLines.push(newLine);
+  }
+
   printStatement() {
     const output = this.statementLines.join('\n');
     return output;
