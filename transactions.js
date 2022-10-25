@@ -20,14 +20,12 @@ class Transactions {
     this.checkArgument(amount);
     this.account.updateBalance(amount);
     this.statement.addTransaction(dateString, amount, this.account.getBalance());
-    // this.statement.addTransaction(`${dateString} || ${amount}.00 || || ${this.account.getBalance()}.00`);
   }
 
   withdraw(amount, dateString = this.getDate()) {
     this.checkArgument(amount);
     this.account.updateBalance(- amount);
     this.statement.addTransaction(dateString, - amount, this.account.getBalance());
-    // this.statement.addTransaction(`${dateString} || || ${amount}.00 || ${this.account.getBalance()}.00`)
   }
 }
 
