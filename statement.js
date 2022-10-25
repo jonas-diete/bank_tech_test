@@ -3,8 +3,14 @@ class Statement {
     this.statementLines = [];
   }
 
-  addLine(newLine) {
-    this.statementLines.unshift(newLine);
+  addTransaction(date, amount, balance) {
+    if (amount >= 0) {
+      // Deposit
+      this.statementLines.unshift(`${date} || ${amount}.00 || || ${balance}.00`);
+    } else {
+      // Withdrawal
+      this.statementLines.unshift(`${date} || || ${(amount *= -1)}.00 || ${balance}.00`);
+    }
   }
 
   printStatement() {

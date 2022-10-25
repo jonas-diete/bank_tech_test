@@ -7,7 +7,7 @@ describe('Transaction', () => {
       getBalance: () => {return 1000}
     };
     const fakeStatement = {
-      addLine: (line) => {}
+      addTransaction: (date, amount, balance) => {}
     };
     const transactions = new Transactions(fakeAccount, fakeStatement);
     transactions.deposit(1000, '23/10/2022');
@@ -20,7 +20,7 @@ describe('Transaction', () => {
       getBalance: () => {return -300}
     };
     const fakeStatement = {
-      addLine: (line) => {}
+      addTransaction: (date, amount, balance) => {}
     };
     const transactions = new Transactions(fakeAccount, fakeStatement);
     transactions.withdraw(300, '24/10/2022');
@@ -33,7 +33,7 @@ describe('Transaction', () => {
       getBalance: () => {return 500}
     };
     const fakeStatement = {
-      addLine: (line) => {}
+      addTransaction: (date, amount, balance) => {}
     };
     const transactions = new Transactions(fakeAccount, fakeStatement);
     transactions.deposit(1000);
