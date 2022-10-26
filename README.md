@@ -25,9 +25,9 @@ Use the node REPL to run the program (by running `node`).
 
 Run these lines first to import the classes and create instances of them:
 ```bash
-const Account = require('./account');
-const TransactionMaker = require('./transactionMaker');
-const Statement = require('./statement');
+const Account = require('./src/account');
+const TransactionMaker = require('./src/transactionMaker');
+const Statement = require('./src/statement');
 
 const account = new Account;
 const transactionMaker = new TransactionMaker(account);
@@ -36,8 +36,8 @@ const statement = new Statement(account);
 
 Then you can run
 ```bash
-transactions.deposit(amount);
-transactions.withdraw(amount);
+transactionMaker.deposit(amount);
+transactionMaker.withdraw(amount);
 statement.printStatement();
 ```
 to interact with the program.

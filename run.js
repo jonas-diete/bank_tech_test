@@ -1,6 +1,6 @@
-const Account = require('./account');
-const TransactionMaker = require('./transactionMaker');
-const Statement = require('./statement');
+const Account = require('./src/account');
+const TransactionMaker = require('./src/transactionMaker');
+const Statement = require('./src/statement');
 
 // An example of how the program works
 // Enter 'node run.js' to see the output

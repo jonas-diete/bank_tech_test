@@ -1,6 +1,6 @@
-const TransactionMaker = require('./transactionMaker');
-const Account = require('./account');
-const Statement = require('./statement');
+const TransactionMaker = require('../src/transactionMaker');
+const Account = require('../src/account');
+const Statement = require('../src/statement');
 
 describe('Integration', () => {
   it('deposits money', () => {

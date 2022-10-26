@@ -1,4 +1,4 @@
-const Statement = require('./statement');
+const Statement = require('../src/statement');
 
 describe('Statement', () => {
   it('returns the start line without any transactions', () => {

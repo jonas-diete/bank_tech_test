@@ -1,4 +1,4 @@
-const TransactionMaker = require('./transactionMaker');
+const TransactionMaker = require('../src/transactionMaker');
 
 describe('TransactionMaker', () => {
   it('deposit function exists', () => {
