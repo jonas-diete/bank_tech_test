@@ -46,8 +46,9 @@ describe('Integration', () => {
     transactionMaker.deposit(1000);
     transactionMaker.deposit(2000);
     transactionMaker.withdraw(500);
+    transactionMaker.withdraw(100);
     const date = new Date;
     const dateString = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
-    expect(statement.printStatement()).toBe(`date || credit || debit || balance\n${dateString} || || 500.00 || 2500.00\n${dateString} || 2000.00 || || 3000.00\n${dateString} || 1000.00 || || 1000.00`);
+    expect(statement.printStatement()).toBe(`date || credit || debit || balance\n${dateString} || || 100.00 || 2400.00\n${dateString} || || 500.00 || 2500.00\n${dateString} || 2000.00 || || 3000.00\n${dateString} || 1000.00 || || 1000.00`);
   });
 });

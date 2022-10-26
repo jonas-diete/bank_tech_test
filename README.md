@@ -25,13 +25,13 @@ Use the node REPL to run the program (by running `node`).
 
 Run these lines first to import the classes and create instances of them:
 ```bash
-const Transactions = require('./transactions');
 const Account = require('./account');
+const TransactionMaker = require('./transactionMaker');
 const Statement = require('./statement');
 
 const account = new Account;
-const statement = new Statement;
-const transactions = new Transactions(account, statement);
+const transactionMaker = new TransactionMaker(account);
+const statement = new Statement(account);
 ```
 
 Then you can run
@@ -42,13 +42,15 @@ statement.printStatement();
 ```
 to interact with the program.
 
+You can also enter `node run.js` to see an example of how the program runs.
+
 ## My Approach:
 I thought about the different classes and drew a diagram on how they should interact. 
 
 There are 3 classes:
-- Account - keeps track of the balance
-- Statement - keeps track of the deposits and withdrawals and can print a statement for the user to see
-- Transactions - handles deposits and withdrawals and updates the Account balance accordingly. Sends information about withdrawals and deposits with the correct date to an instance of the Statement class.
+- Account - keeps track of all transactions along with the balance
+- Statement - gets transactions from account to print a statement for the user to see
+- TransactionMaker - handles deposits and withdrawals and sends them to the Account for storing.
 
 ![diagram](./classes_diagram.png)
 
