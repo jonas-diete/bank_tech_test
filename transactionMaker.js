@@ -1,7 +1,6 @@
-class Transactions {
-  constructor(account, statement) {
+class TransactionMaker {
+  constructor(account) {
     this.account = account;
-    this.statement = statement;
   }
 
   getDate() {
@@ -16,17 +15,15 @@ class Transactions {
     }
   }
 
-  deposit(amount, dateString = this.getDate()) {
+  deposit(amount) {
     this.checkArgument(amount);
-    this.account.updateBalance(amount);
-    this.statement.addTransaction(dateString, amount, this.account.getBalance());
+    this.account.addTransaction(this.getDate(), amount);
   }
 
-  withdraw(amount, dateString = this.getDate()) {
+  withdraw(amount) {
     this.checkArgument(amount);
-    this.account.updateBalance(- amount);
-    this.statement.addTransaction(dateString, - amount, this.account.getBalance());
+    this.account.addTransaction(this.getDate(), - amount);
   }
 }
 
-module.exports = Transactions;
+module.exports = TransactionMaker;

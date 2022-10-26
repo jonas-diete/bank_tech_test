@@ -1,27 +1,29 @@
 class Statement {
-  constructor() {
-    this.statementLines = [];
+  constructor(account) {
+    this.account = account;
   }
 
-  addTransaction(date, amount, balance) {
-    if (amount >= 0) {
+  createStatementLines(transactions) {
+    let statementLines = []
+    transactions.forEach((transaction) => {
+      if (transaction.amount >= 0) {
       // Deposit
-      this.statementLines.unshift(`${date} || ${amount}.00 || || ${balance}.00`);
-    } else {
+      statementLines.push(`${transaction.date} || ${transaction.amount}.00 || || ${transaction.balance}.00`);
+      } else {
       // Withdrawal
-      this.statementLines.unshift(`${date} || || ${(amount *= -1)}.00 || ${balance}.00`);
-    }
+      statementLines.push(`${transaction.date} || || ${(transaction.amount *= -1)}.00 || ${transaction.balance}.00`);
+      };
+    });
+    return statementLines;
   }
 
   printStatement() {
-    // Add the headings line
-    this.statementLines.unshift('date || credit || debit || balance');
+    let statementLines = this.createStatementLines(this.account.transactions);
+
+    statementLines.unshift(['date || credit || debit || balance', ])
 
     // Create a single string to return
-    const statementString = this.statementLines.join('\n');
-
-    // Delete the headings line again, ready to add more transactions
-    this.statementLines.splice(0, 1);
+    const statementString = statementLines.join('\n');
 
     return statementString;
   }

@@ -1,4 +1,4 @@
-const Transactions = require('./transactions');
+const TransactionMaker = require('./transactionMaker');
 const Account = require('./account');
 const Statement = require('./statement');
 
@@ -6,9 +6,9 @@ const Statement = require('./statement');
 // An example of how the program works
 // Enter 'node run.js' to see the output
 const account = new Account;
-const statement = new Statement;
-const transactions = new Transactions(account, statement);
-transactions.deposit(1000, '10/01/2023');
-transactions.deposit(2000, '13/01/2023');
-transactions.withdraw(500, '14/01/2023');
+const statement = new Statement(account);
+const transactionMaker = new TransactionMaker(account);
+transactionMaker.deposit(1000);
+transactionMaker.deposit(2000);
+transactionMaker.withdraw(500);
 console.log(statement.printStatement());

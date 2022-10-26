@@ -1,47 +1,53 @@
-const Transactions = require('./transactions');
+const TransactionMaker = require('./transactionMaker');
 const Account = require('./account');
 const Statement = require('./statement');
 
 describe('Integration', () => {
   it('deposits money', () => {
     const account = new Account;
-    const statement = new Statement;
-    const transactions = new Transactions(account, statement);
-    transactions.deposit(1000);
-    expect(account.getBalance()).toBe(1000);
+    const statement = new Statement(account);
+    const transactionMaker = new TransactionMaker(account);
+    transactionMaker.deposit(1000);
+    expect(account.balance).toBe(1000);
   });
 
   it('withdraws money', () => {
     const account = new Account;
-    const statement = new Statement;
-    const transactions = new Transactions(account, statement);
-    transactions.withdraw(300);
-    expect(account.getBalance()).toBe(-300);
+    const statement = new Statement(account);
+    const transactionMaker = new TransactionMaker(account);
+    transactionMaker.withdraw(300);
+    expect(account.balance).toBe(-300);
   });
 
   it('adds correct statement line after depositing', () => {
     const account = new Account;
-    const statement = new Statement;
-    const transactions = new Transactions(account, statement);
-    transactions.deposit(1000, '10/01/2023');
-    expect(statement.printStatement()).toBe('date || credit || debit || balance\n10/01/2023 || 1000.00 || || 1000.00');
+    const statement = new Statement(account);
+    const transactionMaker = new TransactionMaker(account);
+    transactionMaker.deposit(1000);
+    const date = new Date;
+    const dateString = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
+    expect(statement.printStatement()).toBe(`date || credit || debit || balance\n${dateString} || 1000.00 || || 1000.00`);
   });
 
   it('adds correct statement line after withdrawing', () => {
     const account = new Account;
-    const statement = new Statement;
-    const transactions = new Transactions(account, statement);
-    transactions.withdraw(500, '14/01/2023');
-    expect(statement.printStatement()).toBe('date || credit || debit || balance\n14/01/2023 || || 500.00 || -500.00');
+    const statement = new Statement(account);
+    const transactionMaker = new TransactionMaker(account);
+    transactionMaker.withdraw(500);
+    const date = new Date;
+    const dateString = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
+    expect(statement.printStatement()).toBe(`date || credit || debit || balance\n${dateString} || || 500.00 || -500.00`);
   });
 
   it('prints the whole correct statement after depositing and withdrawing a few times', () => {
     const account = new Account;
-    const statement = new Statement;
-    const transactions = new Transactions(account, statement);
-    transactions.deposit(1000, '10/01/2023');
-    transactions.deposit(2000, '13/01/2023');
-    transactions.withdraw(500, '14/01/2023');
-    expect(statement.printStatement()).toBe('date || credit || debit || balance\n14/01/2023 || || 500.00 || 2500.00\n13/01/2023 || 2000.00 || || 3000.00\n10/01/2023 || 1000.00 || || 1000.00');
+    const statement = new Statement(account);
+    const transactionMaker = new TransactionMaker(account);
+    transactionMaker.deposit(1000);
+    transactionMaker.deposit(2000);
+    transactionMaker.withdraw(500);
+    const date = new Date;
+    const dateString = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
+    expect(statement.printStatement()).toBe(`date || credit || debit || balance\n${dateString} || || 500.00 || 2500.00\n${dateString} || 2000.00 || || 3000.00\n${dateString} || 1000.00 || || 1000.00`);
   });
 });
