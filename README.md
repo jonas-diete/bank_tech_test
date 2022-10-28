@@ -4,7 +4,7 @@ This is a little program I wrote in node.js to practise and demonstrate writing 
 
 It simulates a bank account and keeps track of your balance, deposits and withdrawals.
 
-Here is a  of the program in action.
+Here is a screenshot of the program in action.
 
 ![screenshot](./program_screenshot.png)
 
